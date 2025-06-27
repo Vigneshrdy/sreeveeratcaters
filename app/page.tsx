@@ -8,9 +8,28 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
-import { Phone, Mail, MapPin, Star, ChefHat, Users, Calendar, Award, Menu, X, MessageCircle, Globe } from "lucide-react"
+import { GlowingEffect } from "@/components/ui/glowing-effect"
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Star,
+  ChefHat,
+  Users,
+  Calendar,
+  Award,
+  Menu,
+  X,
+  MessageCircle,
+  Globe,
+  Utensils,
+  Heart,
+  Clock,
+  Shield,
+  Leaf,
+  Bot,
+} from "lucide-react"
 import { LampDemo } from "@/components/ui/lamp"
-import DisplayCards from "@/components/ui/display-cards"
 
 export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -67,6 +86,12 @@ export default function Home() {
                   Services
                 </button>
                 <button
+                  onClick={() => scrollToSection("pindi-vantalu")}
+                  className="text-slate-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+                >
+                  Pindi Vantalu
+                </button>
+                <button
                   onClick={() => scrollToSection("gallery")}
                   className="text-slate-300 hover:text-cyan-400 px-3 py-2 rounded-md text-sm font-medium transition-colors"
                 >
@@ -119,6 +144,12 @@ export default function Home() {
                 Services
               </button>
               <button
+                onClick={() => scrollToSection("pindi-vantalu")}
+                className="block text-slate-300 hover:text-cyan-400 px-3 py-2 rounded-md text-base font-medium w-full text-left"
+              >
+                Pindi Vantalu
+              </button>
+              <button
                 onClick={() => scrollToSection("gallery")}
                 className="block text-slate-300 hover:text-cyan-400 px-3 py-2 rounded-md text-base font-medium w-full text-left"
               >
@@ -152,7 +183,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="relative">
               <img
-                src="/placeholder.svg?height=600&width=500"
+                src="/vedire-raghuveer-reddy.png"
                 alt="Vedire Raghuveer Reddy"
                 className="rounded-2xl shadow-2xl w-full h-[600px] object-cover border border-slate-700"
               />
@@ -206,13 +237,6 @@ export default function Home() {
 
       {/* Services Section */}
       <section id="services" className="py-20 bg-slate-950 relative overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl"></div>
-          <div className="absolute bottom-1/4 left-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-2xl"></div>
-        </div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
             <Badge className="bg-cyan-100 text-cyan-800 mb-4">Our Services</Badge>
@@ -225,231 +249,210 @@ export default function Home() {
             </p>
           </div>
 
-          {/* Clean Display Cards */}
-          <div className="flex justify-center mb-20">
-            <DisplayCards
-              cards={[
-                {
-                  icon: <Users className="size-4 text-cyan-300" />,
-                  title: "Wedding Catering",
-                  description: "Traditional & destination weddings",
-                  date: "Complete Service",
-                  iconClassName: "text-cyan-500",
-                  titleClassName: "text-cyan-400",
-                  className:
-                    "[grid-area:stack] hover:-translate-y-10 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-slate-900/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0 bg-slate-900/70 border border-slate-700 hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:bg-slate-800/80 transition-all duration-500",
-                },
-                {
-                  icon: <Calendar className="size-4 text-cyan-300" />,
-                  title: "Corporate Events",
-                  description: "Business meetings & conferences",
-                  date: "Professional",
-                  iconClassName: "text-cyan-500",
-                  titleClassName: "text-cyan-400",
-                  className:
-                    "[grid-area:stack] translate-x-8 translate-y-8 hover:-translate-y-2 before:absolute before:w-[100%] before:outline-1 before:rounded-xl before:outline-border before:h-[100%] before:content-[''] before:bg-blend-overlay before:bg-slate-900/50 grayscale-[100%] hover:before:opacity-0 before:transition-opacity before:duration-700 hover:grayscale-0 before:left-0 before:top-0 bg-slate-900/70 border border-slate-700 hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:bg-slate-800/80 transition-all duration-500",
-                },
-                {
-                  icon: <ChefHat className="size-4 text-cyan-300" />,
-                  title: "Traditional Feasts",
-                  description: "Authentic South Indian cuisine",
-                  date: "Heritage",
-                  iconClassName: "text-cyan-500",
-                  titleClassName: "text-cyan-400",
-                  className:
-                    "[grid-area:stack] translate-x-16 translate-y-16 hover:translate-y-6 bg-slate-900/70 border border-slate-700 hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(34,211,238,0.3)] hover:bg-slate-800/80 transition-all duration-500",
-                },
-              ]}
-            />
+          {/* Services Grid with Glowing Effects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Users className="h-8 w-8 text-cyan-400" />,
+                title: "Wedding Catering",
+                description:
+                  "Complete wedding catering with traditional menus, custom decorations, and professional staff for your special day.",
+                features: [
+                  "Traditional South Indian menus",
+                  "Destination wedding services",
+                  "Custom decoration & setup",
+                ],
+              },
+              {
+                icon: <Calendar className="h-8 w-8 text-cyan-400" />,
+                title: "Corporate Events",
+                description:
+                  "Professional catering for business meetings, conferences, and corporate celebrations with modern presentation.",
+                features: ["Business lunch catering", "Conference & seminar meals", "Office party arrangements"],
+              },
+              {
+                icon: <Shield className="h-8 w-8 text-cyan-400" />,
+                title: "Quality Assurance",
+                description:
+                  "Premium homemade taste with natural ingredients, ensuring authentic flavors without any artificial additives.",
+                features: ["No artificial colors", "No Ajinomoto", "100% homemade taste"],
+              },
+              {
+                icon: <Star className="h-8 w-8 text-cyan-400" />,
+                title: "Birthday Parties",
+                description:
+                  "Fun and festive birthday celebrations with customizable menus suitable for all age groups and preferences.",
+                features: ["Kid-friendly options", "Custom birthday cakes", "Party decorations"],
+              },
+              {
+                icon: <Award className="h-8 w-8 text-cyan-400" />,
+                title: "Event Management",
+                description:
+                  "Complete event planning and management including venue decoration, entertainment coordination, and logistics.",
+                features: ["Full event planning", "Venue decoration", "Entertainment coordination"],
+              },
+              {
+                icon: <Globe className="h-8 w-8 text-cyan-400" />,
+                title: "International Events",
+                description:
+                  "Global catering services with premium quality food delivered worldwide, adapting to local preferences while maintaining authenticity.",
+                features: ["International reach", "Premium quality assurance", "Cultural adaptations"],
+              },
+            ].map((service, index) => (
+              <div key={index} className="relative min-h-[20rem]">
+                <div className="relative h-full rounded-2xl border border-slate-700 p-1">
+                  <GlowingEffect
+                    spread={40}
+                    glow={true}
+                    disabled={false}
+                    proximity={64}
+                    inactiveZone={0.01}
+                    borderWidth={2}
+                  />
+                  <div className="relative h-full bg-slate-900/50 backdrop-blur-sm rounded-xl p-8 flex flex-col">
+                    <div className="flex items-center mb-6">
+                      <div className="p-3 bg-cyan-500/20 rounded-full mr-4">{service.icon}</div>
+                      <h3 className="text-xl font-semibold text-white">{service.title}</h3>
+                    </div>
+
+                    <p className="text-slate-300 mb-6 flex-grow">{service.description}</p>
+
+                    <div className="space-y-2">
+                      {service.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="flex items-center text-sm text-slate-400">
+                          <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3"></div>
+                          {feature}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Telangana Pindi Vantalu Section */}
+      <section id="pindi-vantalu" className="py-20 bg-slate-950 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-yellow-500/5 rounded-full blur-2xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <Badge className="bg-orange-100 text-orange-800 mb-4">Telangana Specialties</Badge>
+            <h2 className="text-4xl font-bold bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-transparent mb-6">
+              Authentic Pindi Vantalu
+            </h2>
+            <p className="text-xl text-slate-300 max-w-3xl mx-auto">
+              Experience the rich culinary heritage of Telangana with our traditional Pindi Vantalu - authentic
+              village-style snacks and sweets that bring the taste of rural Telangana to your celebrations.
+            </p>
           </div>
 
-          {/* Service Features */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-slate-900/50 border-slate-700 hover:bg-slate-800/50 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all duration-500 backdrop-blur-sm group">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  <div className="p-3 bg-cyan-500/20 rounded-full group-hover:bg-cyan-500/30 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300">
-                    <Users className="h-6 w-6 text-cyan-400 group-hover:text-cyan-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white ml-4 group-hover:text-cyan-100 transition-colors duration-300">
-                    Wedding Catering
-                  </h3>
-                </div>
-                <p className="text-slate-300 mb-4 group-hover:text-slate-200 transition-colors duration-300">
-                  Complete wedding catering with traditional menus, custom decorations, and professional staff for your
-                  special day.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Traditional South Indian menus
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Destination wedding services
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Custom decoration & setup
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold text-white mb-6">Traditional Snacks & Sweets</h3>
+              <p className="text-lg text-slate-300 leading-relaxed">
+                Pindi Vantalu snacks represent the authentic taste of Telangana festivals and celebrations. Our master
+                chefs prepare these traditional delicacies using time-honored recipes and the finest ingredients,
+                ensuring every bite captures the essence of our cultural heritage.
+              </p>
+              <p className="text-lg text-slate-300 leading-relaxed">
+                From crispy Murukulu to sweet Boorelu, each snack is carefully crafted to perfection. These traditional
+                treats are perfect for festivals, special occasions, or whenever you want to experience the authentic
+                flavors of Telangana cuisine.
+              </p>
+            </div>
 
-            <Card className="bg-slate-900/50 border-slate-700 hover:bg-slate-800/50 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all duration-500 backdrop-blur-sm group">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  <div className="p-3 bg-cyan-500/20 rounded-full group-hover:bg-cyan-500/30 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300">
-                    <Calendar className="h-6 w-6 text-cyan-400 group-hover:text-cyan-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white ml-4 group-hover:text-cyan-100 transition-colors duration-300">
-                    Corporate Events
-                  </h3>
-                </div>
-                <p className="text-slate-300 mb-4 group-hover:text-slate-200 transition-colors duration-300">
-                  Professional catering for business meetings, conferences, and corporate celebrations with modern
-                  presentation.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Business lunch catering
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Conference & seminar meals
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Office party arrangements
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="relative">
+              <div className="relative rounded-2xl border border-slate-700 p-1">
+                <GlowingEffect
+                  spread={30}
+                  glow={true}
+                  disabled={false}
+                  proximity={48}
+                  inactiveZone={0.1}
+                  borderWidth={2}
+                />
+                <img
+                  src="/placeholder.svg?height=400&width=600"
+                  alt="Traditional Telangana Pindi Vantalu Snacks"
+                  className="rounded-xl w-full h-[400px] object-cover"
+                />
+              </div>
+            </div>
+          </div>
 
-            <Card className="bg-slate-900/50 border-slate-700 hover:bg-slate-800/50 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all duration-500 backdrop-blur-sm group">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  <div className="p-3 bg-cyan-500/20 rounded-full group-hover:bg-cyan-500/30 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300">
-                    <ChefHat className="h-6 w-6 text-cyan-400 group-hover:text-cyan-300" />
+          {/* Signature Snacks */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: <Heart className="h-6 w-6 text-orange-400" />,
+                title: "Sakinalu",
+                description: "Crispy ring-shaped snacks made with rice flour and spices",
+              },
+              {
+                icon: <Utensils className="h-6 w-6 text-orange-400" />,
+                title: "Harshalu",
+                description: "Traditional sweet treats perfect for festive occasions",
+              },
+              {
+                icon: <ChefHat className="h-6 w-6 text-orange-400" />,
+                title: "Garelu",
+                description: "Savory lentil fritters with authentic village flavors",
+              },
+              {
+                icon: <Clock className="h-6 w-6 text-orange-400" />,
+                title: "Murukulu",
+                description: "Crispy spiral-shaped snacks made from rice flour and spices",
+              },
+              {
+                icon: <Leaf className="h-6 w-6 text-orange-400" />,
+                title: "Boorelu",
+                description: "Sweet lentil dumplings in jaggery syrup, perfect for festivals",
+              },
+              {
+                icon: <Star className="h-6 w-6 text-orange-400" />,
+                title: "Ariselu",
+                description: "Traditional rice flour sweet delicacy with sesame seeds",
+              },
+            ].map((snack, index) => (
+              <div key={index} className="relative">
+                <div className="relative rounded-xl border border-slate-700 p-1">
+                  <GlowingEffect
+                    spread={25}
+                    glow={true}
+                    disabled={false}
+                    proximity={32}
+                    inactiveZone={0.2}
+                    borderWidth={1}
+                  />
+                  <div className="relative bg-slate-900/50 backdrop-blur-sm rounded-lg p-6 text-center">
+                    <div className="flex justify-center mb-4">
+                      <div className="p-3 bg-orange-500/20 rounded-full">{snack.icon}</div>
+                    </div>
+                    <h4 className="text-lg font-semibold text-white mb-2">{snack.title}</h4>
+                    <p className="text-slate-300 text-sm">{snack.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold text-white ml-4 group-hover:text-cyan-100 transition-colors duration-300">
-                    Traditional Feasts
-                  </h3>
                 </div>
-                <p className="text-slate-300 mb-4 group-hover:text-slate-200 transition-colors duration-300">
-                  Authentic South Indian meals served on banana leaves with traditional recipes passed down through
-                  generations.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Banana leaf service
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Regional specialties
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Festival menus
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+            ))}
+          </div>
 
-            <Card className="bg-slate-900/50 border-slate-700 hover:bg-slate-800/50 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all duration-500 backdrop-blur-sm group">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  <div className="p-3 bg-cyan-500/20 rounded-full group-hover:bg-cyan-500/30 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300">
-                    <Star className="h-6 w-6 text-cyan-400 group-hover:text-cyan-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white ml-4 group-hover:text-cyan-100 transition-colors duration-300">
-                    Birthday Parties
-                  </h3>
-                </div>
-                <p className="text-slate-300 mb-4 group-hover:text-slate-200 transition-colors duration-300">
-                  Fun and festive birthday celebrations with customizable menus suitable for all age groups and
-                  preferences.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Kid-friendly options
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Custom birthday cakes
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Party decorations
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-900/50 border-slate-700 hover:bg-slate-800/50 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all duration-500 backdrop-blur-sm group">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  <div className="p-3 bg-cyan-500/20 rounded-full group-hover:bg-cyan-500/30 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300">
-                    <Award className="h-6 w-6 text-cyan-400 group-hover:text-cyan-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white ml-4 group-hover:text-cyan-100 transition-colors duration-300">
-                    Event Management
-                  </h3>
-                </div>
-                <p className="text-slate-300 mb-4 group-hover:text-slate-200 transition-colors duration-300">
-                  Complete event planning and management including venue decoration, entertainment coordination, and
-                  logistics.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Full event planning
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Venue decoration
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Entertainment coordination
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-slate-900/50 border-slate-700 hover:bg-slate-800/50 hover:border-cyan-400/50 hover:shadow-[0_0_20px_rgba(34,211,238,0.2)] transition-all duration-500 backdrop-blur-sm group">
-              <CardContent className="p-8">
-                <div className="flex items-center mb-4">
-                  <div className="p-3 bg-cyan-500/20 rounded-full group-hover:bg-cyan-500/30 group-hover:shadow-[0_0_15px_rgba(34,211,238,0.4)] transition-all duration-300">
-                    <Globe className="h-6 w-6 text-cyan-400 group-hover:text-cyan-300" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-white ml-4 group-hover:text-cyan-100 transition-colors duration-300">
-                    International Events
-                  </h3>
-                </div>
-                <p className="text-slate-300 mb-4 group-hover:text-slate-200 transition-colors duration-300">
-                  Global catering services with premium quality food delivered worldwide, adapting to local preferences
-                  while maintaining authenticity.
-                </p>
-                <div className="space-y-2">
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    International reach
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Premium quality assurance
-                  </div>
-                  <div className="flex items-center text-sm text-slate-400 group-hover:text-slate-300 transition-colors duration-300">
-                    <div className="w-2 h-2 bg-cyan-400 rounded-full mr-3 group-hover:shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                    Cultural adaptations
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="text-center mt-12">
+            <p className="text-lg text-slate-300 mb-6">
+              Experience the authentic taste of Telangana's culinary heritage at your next event
+            </p>
+            <Button
+              onClick={() => window.open("tel:+919949198142")}
+              className="bg-orange-600 hover:bg-orange-700 text-white px-8 py-3 rounded-full font-semibold transition-colors duration-300"
+            >
+              <Phone className="h-5 w-5 mr-2" />
+              Order Pindi Vantalu
+            </Button>
           </div>
         </div>
       </section>
@@ -460,21 +463,40 @@ export default function Home() {
           <div className="text-center mb-16">
             <Badge className="bg-cyan-100 text-cyan-800 mb-4">Gallery</Badge>
             <h2 className="text-4xl font-bold bg-gradient-to-br from-slate-300 to-slate-500 bg-clip-text text-transparent mb-6">
-              Our Culinary Creations
+              Our Culinary Experiences
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
-              Feast your eyes on our delicious dishes and memorable events that showcase our commitment to excellence.
+              Witness the warmth and hospitality that defines our catering services through these memorable moments with
+              our valued clients.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { src: "/placeholder.svg?height=400&width=400", alt: "Traditional South Indian Thali" },
-              { src: "/placeholder.svg?height=400&width=400", alt: "Wedding Feast Setup" },
-              { src: "/placeholder.svg?height=400&width=400", alt: "Corporate Event Catering" },
-              { src: "/placeholder.svg?height=400&width=400", alt: "Birthday Party Spread" },
-              { src: "/placeholder.svg?height=400&width=400", alt: "Traditional Sweets" },
-              { src: "/placeholder.svg?height=400&width=400", alt: "Event Decoration" },
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.jpg-aCZTnAJYi3ByRcKeTQQTyhwN9WIZXq.jpeg",
+                alt: "Traditional Dining Experience - Group Gathering",
+              },
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.jpg-4hDLKJlbiBOisqFQ12MNy5iugmJM09.jpeg",
+                alt: "Intimate Corporate Meeting Setup",
+              },
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3.jpg-ryI3IFU7qXGSCaJBR0QRY825hgmKhX.jpeg",
+                alt: "Festive Dining Celebration",
+              },
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4.jpg-pY71geI9bGK585M4J8D6fQItcMsZz4.jpeg",
+                alt: "Community Feast Gathering",
+              },
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5.jpg-jseHndeoZP66PtD35pixghMD1K1xlL.jpeg",
+                alt: "Traditional Home-style Catering",
+              },
+              {
+                src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6.jpg-zahQOxZsFqEt9PED65gFfElb9DJs6y.jpeg",
+                alt: "Warm Hospitality Experience",
+              },
             ].map((image, index) => (
               <div
                 key={index}
@@ -641,13 +663,13 @@ export default function Home() {
                         <p className="font-semibold text-white">Phone</p>
                         <p className="text-slate-300">+91 99491 98142</p>
                         <p className="text-slate-300">+91 99081 83616</p>
+                        <p className="text-slate-300">+91 70322 59167</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
                       <Mail className="h-6 w-6 text-cyan-400 mt-1" />
                       <div>
                         <p className="font-semibold text-white">Email</p>
-                        <p className="text-slate-300">info@sreeveerat.com</p>
                         <p className="text-slate-300">vedire.raghuveer@gmail.com</p>
                       </div>
                     </div>
@@ -712,6 +734,14 @@ export default function Home() {
                   </button>
                 </li>
                 <li>
+                  <button
+                    onClick={() => scrollToSection("pindi-vantalu")}
+                    className="hover:text-cyan-400 transition-colors"
+                  >
+                    Pindi Vantalu
+                  </button>
+                </li>
+                <li>
                   <button onClick={() => scrollToSection("gallery")} className="hover:text-cyan-400 transition-colors">
                     Gallery
                   </button>
@@ -728,7 +758,8 @@ export default function Home() {
               <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
               <div className="space-y-2 text-slate-400">
                 <p>+91 99491 98142</p>
-                <p>info@sreeveerat.com</p>
+                <p>+91 70322 59167</p>
+                <p>vedire.raghuveer@gmail.com</p>
                 <p>Hyderabad, Telangana</p>
               </div>
             </div>
@@ -740,8 +771,17 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* WhatsApp Chat Button */}
-      <div className="fixed bottom-6 right-6 z-50">
+      {/* Floating Action Buttons */}
+      <div className="fixed bottom-6 right-6 z-50 flex flex-col space-y-4">
+        {/* Chatbot Button */}
+        <Button
+          className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110"
+          size="lg"
+        >
+          <Bot className="h-6 w-6" />
+        </Button>
+
+        {/* WhatsApp Button */}
         <Button
           onClick={() =>
             window.open(
