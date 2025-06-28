@@ -796,9 +796,9 @@ Phone: ${pindiFormData.phone}`
                       <div>
                         <p className="font-semibold text-white">Address</p>
                         <p className="text-slate-300">
-                          Ramanthpur
+                          Ramanthpur,
                           <br />
-                          Hyderabad, Telangana 500013
+                          Hyderabad, Telangana-500013
                         </p>
                       </div>
                     </div>
