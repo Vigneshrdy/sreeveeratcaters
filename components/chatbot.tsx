@@ -252,11 +252,19 @@ export default function Chatbot() {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-slate-700">
           <div className="flex items-center space-x-3">
-            <div className="p-2 bg-cyan-600 rounded-full">
-              <Bot className="h-5 w-5 text-white" />
-            </div>
             <div>
-              <h3 className="font-semibold text-white">Menu Assistant</h3>
+              <div className="flex items-center space-x-3">
+                <h3 className="font-semibold text-white">Menu Assistant</h3>
+                <Button
+                  onClick={() => window.open("https://wa.me/919949198142", "_blank")}
+                  variant="outline"
+                  size="sm"
+                  className="border-green-600 text-green-400 hover:bg-green-600 hover:text-white px-2 py-1"
+                >
+                  <MessageCircle className="h-4 w-4 mr-1" />
+                  WhatsApp
+                </Button>
+              </div>
               <p className="text-xs text-slate-400">Sree Veerat Caters</p>
             </div>
           </div>
@@ -358,15 +366,6 @@ export default function Chatbot() {
             >
               <Phone className="h-4 w-4 mr-1" />
               Call
-            </Button>
-            <Button
-              onClick={() => window.open("https://wa.me/919949198142", "_blank")}
-              variant="outline"
-              size="sm"
-              className="flex-1 border-green-600 text-green-400 hover:bg-green-600 hover:text-white"
-            >
-              <MessageCircle className="h-4 w-4 mr-1" />
-              WhatsApp
             </Button>
           </div>
         </div>

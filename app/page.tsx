@@ -8,6 +8,13 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 import { GlowingEffect } from "@/components/ui/glowing-effect"
 import {
   Phone,
@@ -35,17 +42,54 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [formData, setFormData] = useState({
     name: "",
-    email: "",
+    eventType: "",
     phone: "",
     message: "",
+  })
+  const [pindiFormData, setPindiFormData] = useState({
+    name: "",
+    phone: "",
+    items: "",
+    location: "",
   })
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log("Form submitted:", formData)
-    alert("Thank you for your inquiry! We will contact you soon.")
-    setFormData({ name: "", email: "", phone: "", message: "" })
+    
+    // Create WhatsApp message with form data
+    const message = `Hello! New inquiry from your website:
+    
+Name: ${formData.name}
+Event Type: ${formData.eventType}
+Phone: ${formData.phone}
+Message: ${formData.message}
+    
+Please contact me for catering services.`
+
+    // Send to WhatsApp
+    const whatsappUrl = `https://wa.me/917032259167?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank')
+    
+    // Reset form
+    setFormData({ name: "", eventType: "", phone: "", message: "" })
+  }
+
+  const handlePindiFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    // Create WhatsApp message with pindi vantalu order data
+    const message = `${pindiFormData.name}
+${pindiFormData.location}
+${pindiFormData.items}
+
+Phone: ${pindiFormData.phone}`
+
+    // Send to WhatsApp
+    const whatsappUrl = `https://wa.me/918125134360?text=${encodeURIComponent(message)}`
+    window.open(whatsappUrl, '_blank')
+    
+    // Reset form
+    setPindiFormData({ name: "", phone: "", items: "", location: "" })
   }
 
   const scrollToSection = (sectionId: string) => {
@@ -454,6 +498,69 @@ export default function Home() {
               Order Pindi Vantalu
             </Button>
           </div>
+
+          {/* Pindi Vantalu Order Form */}
+          <div className="mt-16 max-w-2xl mx-auto">
+            <Card className="shadow-xl bg-slate-900/50 border-slate-700 backdrop-blur-sm hover:border-orange-400/30 hover:shadow-[0_0_30px_rgba(251,146,60,0.2)] transition-all duration-500">
+              <CardContent className="p-8">
+                <h3 className="text-2xl font-bold text-white mb-6 text-center">Order Pindi Vantalu</h3>
+                <form onSubmit={handlePindiFormSubmit} className="space-y-6">
+                  <div>
+                    <Input
+                      placeholder="Your Name"
+                      value={pindiFormData.name}
+                      onChange={(e) => setPindiFormData({ ...pindiFormData, name: e.target.value })}
+                      required
+                      className="rounded-lg border-slate-600 bg-slate-800/50 text-white placeholder:text-slate-400 focus:border-orange-500 focus:ring-orange-500"
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      type="tel"
+                      placeholder="Your Phone Number"
+                      value={pindiFormData.phone}
+                      onChange={(e) => setPindiFormData({ ...pindiFormData, phone: e.target.value })}
+                      required
+                      className="rounded-lg border-slate-600 bg-slate-800/50 text-white placeholder:text-slate-400 focus:border-orange-500 focus:ring-orange-500"
+                    />
+                  </div>
+                  <div>
+                    <Select
+                      value={pindiFormData.items}
+                      onValueChange={(value) => setPindiFormData({ ...pindiFormData, items: value })}
+                      required
+                    >
+                      <SelectTrigger className="rounded-lg border-slate-600 bg-slate-800/50 text-white placeholder:text-slate-400 focus:border-orange-500 focus:ring-orange-500">
+                        <SelectValue placeholder="Select Pindi Vantalu Items" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-slate-800 border-slate-600">
+                        <SelectItem value="sakinalu" className="text-white focus:bg-slate-700">Sakinalu</SelectItem>
+                        <SelectItem value="murukulu" className="text-white focus:bg-slate-700">Murukulu</SelectItem>
+                        <SelectItem value="garelu" className="text-white focus:bg-slate-700">Garelu</SelectItem>
+                        <SelectItem value="badshah-palli-laddu" className="text-white focus:bg-slate-700">Badshah Palli Laddu</SelectItem>
+                        <SelectItem value="nuvvuladdu" className="text-white focus:bg-slate-700">Nuvvuladdu</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div>
+                    <Input
+                      placeholder="Your Location/Address"
+                      value={pindiFormData.location}
+                      onChange={(e) => setPindiFormData({ ...pindiFormData, location: e.target.value })}
+                      required
+                      className="rounded-lg border-slate-600 bg-slate-800/50 text-white placeholder:text-slate-400 focus:border-orange-500 focus:ring-orange-500"
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    className="w-full bg-orange-600 hover:bg-orange-700 text-white py-3 rounded-lg transition-colors duration-300"
+                  >
+                    Submit Order
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -475,27 +582,27 @@ export default function Home() {
             {[
               {
                 src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/1.jpg-aCZTnAJYi3ByRcKeTQQTyhwN9WIZXq.jpeg",
-                alt: "Traditional Dining Experience - Group Gathering",
+                // alt: "Traditional Dining Experience - Group Gathering",
               },
               {
                 src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/2.jpg-4hDLKJlbiBOisqFQ12MNy5iugmJM09.jpeg",
-                alt: "Intimate Corporate Meeting Setup",
+                // alt: "Intimate Corporate Meeting Setup",
               },
               {
                 src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3.jpg-ryI3IFU7qXGSCaJBR0QRY825hgmKhX.jpeg",
-                alt: "Festive Dining Celebration",
+                // alt: "Festive Dining Celebration",
               },
               {
                 src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/4.jpg-pY71geI9bGK585M4J8D6fQItcMsZz4.jpeg",
-                alt: "Community Feast Gathering",
+                // alt: "Community Feast Gathering",
               },
               {
                 src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/5.jpg-jseHndeoZP66PtD35pixghMD1K1xlL.jpeg",
-                alt: "Traditional Home-style Catering",
+                // alt: "Traditional Home-style Catering",
               },
               {
                 src: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/6.jpg-zahQOxZsFqEt9PED65gFfElb9DJs6y.jpeg",
-                alt: "Warm Hospitality Experience",
+                // alt: "Warm Hospitality Experience",
               },
             ].map((image, index) => (
               <div
@@ -504,7 +611,7 @@ export default function Home() {
               >
                 <img
                   src={image.src || "/placeholder.svg"}
-                  alt={image.alt}
+                  // alt={image.alt}
                   className="w-full h-80 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -612,14 +719,25 @@ export default function Home() {
                     />
                   </div>
                   <div>
-                    <Input
-                      type="email"
-                      placeholder="Your Email"
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    <Select
+                      value={formData.eventType}
+                      onValueChange={(value) => setFormData({ ...formData, eventType: value })}
                       required
-                      className="rounded-lg border-slate-600 bg-slate-800/50 text-white placeholder:text-slate-400 focus:border-cyan-500 focus:ring-cyan-500"
-                    />
+                    >
+                      <SelectTrigger className="rounded-lg border-slate-600 bg-slate-800/50 text-white placeholder:text-slate-400 focus:border-cyan-500 focus:ring-cyan-500">
+                        <SelectValue placeholder="Select Event Type" />
+                      </SelectTrigger>
+                      <SelectContent className="bg-slate-800 border-slate-600">
+                        <SelectItem value="wedding" className="text-white focus:bg-slate-700">Wedding</SelectItem>
+                        <SelectItem value="birthday" className="text-white focus:bg-slate-700">Birthday Party</SelectItem>
+                        <SelectItem value="corporate" className="text-white focus:bg-slate-700">Corporate Event</SelectItem>
+                        <SelectItem value="anniversary" className="text-white focus:bg-slate-700">Anniversary</SelectItem>
+                        <SelectItem value="festival" className="text-white focus:bg-slate-700">Festival/Religious</SelectItem>
+                        <SelectItem value="housewarming" className="text-white focus:bg-slate-700">Housewarming</SelectItem>
+                        <SelectItem value="engagement" className="text-white focus:bg-slate-700">Engagement</SelectItem>
+                        <SelectItem value="other" className="text-white focus:bg-slate-700">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div>
                     <Input
@@ -678,9 +796,9 @@ export default function Home() {
                       <div>
                         <p className="font-semibold text-white">Address</p>
                         <p className="text-slate-300">
-                          123 Catering Street
+                          Ramanthpur
                           <br />
-                          Hyderabad, Telangana 500001
+                          Hyderabad, Telangana 500013
                         </p>
                       </div>
                     </div>
@@ -772,28 +890,24 @@ export default function Home() {
       </footer>
 
       {/* Floating Action Buttons */}
-      <div className="fixed bottom-6 right-6 z-50 flex flex-col space-y-4">
-        {/* Chatbot Button */}
-        <Button
-          className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110"
-          size="lg"
-        >
-          <Bot className="h-6 w-6" />
-        </Button>
-
-        {/* WhatsApp Button */}
-        <Button
-          onClick={() =>
-            window.open(
-              "https://wa.me/919949198142?text=Hello! I would like to inquire about your catering services.",
-              "_blank",
-            )
-          }
-          className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110"
-          size="lg"
-        >
-          <MessageCircle className="h-6 w-6" />
-        </Button>
+      <div className="fixed bottom-20 right-6 z-50">
+        {/* WhatsApp Button - Circle Bubble Style */}
+        <div className="relative">
+          <Button
+            onClick={() =>
+              window.open(
+                "https://wa.me/919949198142?text=Hello! I would like to inquire about your catering services.",
+                "_blank",
+              )
+            }
+            className="bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all duration-300 transform hover:scale-110 border-2 border-green-400"
+            size="lg"
+          >
+            <MessageCircle className="h-6 w-6" />
+          </Button>
+          {/* Bubble tail/pointer */}
+          <div className="absolute -bottom-1 right-4 w-0 h-0 border-l-[8px] border-l-transparent border-r-[8px] border-r-transparent border-t-[8px] border-t-green-500"></div>
+        </div>
       </div>
     </div>
   )
